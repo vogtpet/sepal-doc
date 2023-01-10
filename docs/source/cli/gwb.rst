@@ -246,7 +246,7 @@ Processing parameter options are stored in the file :code:`input/acc-parameters.
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; GWB_ACCOUNTING parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
+    ;; NOTE: do NOT delete or add any lines in this parameter file!
     ;;
     ;; ACC: Accounting of image objects and patch area size classes
     ;; Input image requirements: 1b-background, 2b-foreground, optional: 0b-missing
@@ -286,8 +286,8 @@ The results are stored in the directory :code:`output`, one directory for each i
 .. code-block:: console
 
     $ GWB_ACC -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_ACC using:
     dir_input= /home/prambaud/input
@@ -382,7 +382,7 @@ Processing parameter options are stored in the file :code:`input/dist-parameters
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; GWB_DIST parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
+    ;; NOTE: do NOT delete or add any lines in this parameter file!
     ;;
     ;; DIST: Euclidean Distance + Hypsometric Curve
     ;; Input image requirements: 1b-background, 2b-foreground, optional: 0b-missing
@@ -410,8 +410,8 @@ The results are stored in the directory :code:`output`, one directory for each i
 .. code-block:: console
 
     $ GWB_DIST -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_DIST using:
     dir_input= /home/prambaud/input
@@ -474,7 +474,7 @@ Processing parameter options are stored in the file :code:`input/fad-parameters.
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; GWB_FAD parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
+    ;; NOTE: do NOT delete or add any lines in this parameter file!
     ;;
     ;; FAD = multi-scale fragmentation analysis at fixed observation scales of
     ;; [7x7, 13x13, 27x27, 81x81, 243x243] pixels
@@ -514,8 +514,8 @@ The results are stored in the directory :code:`output`, one directory for each i
 .. code-block:: console
 
     $ GWB_FAD -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_FAD using:
     dir_input= /home/prambaud/input
@@ -582,8 +582,7 @@ Processing parameter options are stored in the file :code:`input/frag-parameters
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; GWB_FRAG parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
-    ;;
+    ;; NOTE: do NOT delete or add any lines in this parameter file!
     ;; Fragmentation analysis at up to 10 user-selected Fixed Observation Scales (FOS):
     ;; FAC (Foreground Area Clustering); FAD (Foreground Area Density)
     ;; 
@@ -629,8 +628,8 @@ The results are stored in the directory :code:`output`, one directory for each i
 .. code-block:: console
 
     $ GWB_FRAG -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_FRAG using:
     dir_input= /home/prambaud/input
@@ -732,8 +731,8 @@ Processing parameter options are stored in the file :code:`input/lm-parameters.t
 .. code-block:: text 
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_LM parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
+    ;; GWB_LM parameter file: 
+    ;; NOTE: do NOT delete or add any lines in this parameter file!
     ;;
     ;; LM will provide an image and summary statistics.
     ;; Please specify entries at line 14 ONLY using the following options:
@@ -757,8 +756,8 @@ The results are stored in the directory :code:`output`, one directory for each i
 .. code-block:: console
 
     $ GWB_LM -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_LM using:
     dir_input= /home/prambaud/input
@@ -806,7 +805,7 @@ GWB_MSPA
 
 .. warning::
 
-    If your are considering using the MSPA module, keep in mind that the result provides a lot of information (up to 25 classes). The alternative module :code:`GWB_SPA` provides a similar but simplified assessment with up to 6 classes only. Both modules describe morphological features of foreground objects. While MSPA may address certain features of fragmentation, a more comprehensive assessment of fragmentation is obtained with the dedicated fragmentation modules :code:`GWB_FRAG` or :code:`GWB_FAD`.
+    If your are considering using the MSPA module, keep in mind that the result provides a lot of information (up to 25 classes). The alternative module :code:`GWB_SPA` provides a similar but simplified assessment with up to 6 classes only. Both modules describe morphological features of foreground objects. While MSPA may address certain features of fragmentation, a more comprehensive assessment of fragmentation is obtained with the dedicated fragmentation module :code:`GWB_FRAG`.
 
 This module will conduct the **Morphological Spatial Pattern Analysis**. `MSPA <https://forest.jrc.ec.europa.eu/en/activities/lpa/mspa/>`_ analyses shape and connectivity and conducts a segmentation of foreground (i.e. forest) patches in up to 25 feature classes. The result are spatially explicit maps and tabular summary statistics. Details on the methodology and input/output options can be found in the `Morphology <https://ies-ows.jrc.ec.europa.eu/gtb/GTB/psheets/GTB-Pattern-Morphology.pdf>`_ product sheet.
 
@@ -823,8 +822,8 @@ Processing parameter options are stored in the file :code:`input/mspa-parameters
 .. code-block:: text
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_MSPA parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
+    ;; GWB_MSPA parameter file: 
+    ;; NOTE: do NOT delete or add any lines in this parameter file!
     ;;
     ;; MSPA: Morphological Spatial Pattern Analysis (up to 25 classes)
     ;; Input image requirements: 1b-background, 2b-foreground, optional: 0b-missing
@@ -866,8 +865,8 @@ The results are stored in the directory :code:`output`, one directory for each i
 .. code-block:: console
 
     $ GWB_MSPA -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_MSPA using:
     dir_input= /home/prambaud/input
@@ -922,117 +921,6 @@ Remarks
 
 MSPA is a purely geometric analysis scheme, which can be applied to any type of raster image. It has been used in numerous peer-reviewed publications to map and summarize the spatial pattern, fragmentation and connectivity of forest and other land cover patches, including the detection of structural and functional connecting pathways, analyzing urban greenspace, landscape restoration up to classifying zooplankton species.
 
-GWB_P223
-^^^^^^^^
-
-This module will conduct the **Density** (P2), **Contagion** (P22) or **Adjacency** (P23) analysis of foreground (**FG**) objects at a user-selected observation scale (`Riitters et al. (2000) <https://www.srs.fs.usda.gov/pubs/ja/ja_riitters006.pdf>`_). The result are spatially explicit maps and tabular summary statistics. The classification is determined by measurements of forest amount (P2) and connectivity (P22) within the neighborhood that is centered on a subject forest pixel. P2 is the probability that a pixel in the neighborhood is forest, and P22 is the probability that a pixel next to a forest pixel is also forest.
-
-Requirement
-"""""""""""
-
-Single band geotiff in data format byte: 
-
--   0 byte: missing (optional)
--   1 byte: background
--   2 byte: foreground (forest)
--   3 byte: specific background (for P23 only)
-
-Processing parameter options are stored in the file :code:`input/p223-parameters.txt`. 
-
-.. code-block:: text
-
-    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_P223 parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
-    ;;
-    ;; FG-Density (P2), FG-Contagion (P22), or FG-Adjacency (P23)
-    ;; Input image requirements: 1b-background, 2b-foreground, 
-    ;; 3b-specific background (for P23), optional: 0b-missing
-    ;;
-    ;; P223 will provide a color-coded image showing [0,100]% for either
-    ;; FG-Density, FG-Contagion, or FG-Adjacency masked for the Foreground cover.
-    ;; Use the alternative options 11, 12, 13 to obtain the original spatcon 
-    ;; output without normalisation, masking, or color-coding.
-    ;;
-    ;; For original spatcon output ONLY:
-    ;; Missing values are coded as 0 (rounded byte), or -0.01 (float precision). 
-    ;; For all output types, missing indicates the input window contained 
-    ;; only missing pixels.
-    ;; For FG-Contagion and FG-Adjacency output only, missing also indicates 
-    ;; the input window contained no foreground pixels (there was no information 
-    ;; about foreground edge).
-    ;; For all output types, rounded byte = (float precision * 254) + 1
-    ;;
-    ;; Please specify entries at lines 41-43 ONLY using the following options:
-    ;; line 41:  1 FG-Density   (FG-masked and normalised), or
-    ;;           2 FG-Contagion (FG-masked and normalised), or
-    ;;           3 FG-Adjacency (FG-masked and normalised), or
-    ;;          11 FG-Density   (original spatcon output), or
-    ;;          12 FG-Contagion (original spatcon output), or
-    ;;          13 FG-Adjacency (original spatcon output), or
-    ;;          14 FG-Shannon   (original spatcon output), or
-    ;;          15 FG-SumD      (original spatcon output)
-    ;; line 42: kdim: square window size [pixels], uneven in [3, 5, ..., 501]
-    ;;          obs_scale [hectare] = (pixres * kdim)^2 / 10000
-    ;; line 43: high-precision: 1 (default, float precision) or 0 (rounded byte)
-    ;;
-    ;; an example parameter file for FG-Density and using a 27x27 window:
-    ;; 1
-    ;; 27
-    ;; 1
-    ****************************************************************************
-    1
-    27
-    1
-    ****************************************************************************
-
-Example
-"""""""
-
-The results are stored in the directory :code:`output`, one directory for each input image accompanied by a log-file providing details on computation time and processing success of each input image.
-
-:code:`GWB_P223` command and listing of results in the directory output:
-
-.. code-block:: console
-
-    $ GWB_P223 -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
-
-    GWB_P223 using:
-    dir_input= /home/prambaud/input
-    dir_output= /home/prambaud/output
-    % Loaded DLM: TIFF.
-    Done with: clc3class.tif
-    Done with: example.tif
-    P2 finished sucessfully
-    
-    $ ls -R output/
-    output/:
-    example_p2_27  p2_27.log
-
-    output/example_p2_27:
-    example_p2_27.tif  example_p2_27.txt
-
-Example statistics and spatial result of the input image :code:`example.tif` for P2, showing degree of forest density:
-
-.. code-block:: text
-
-    P2-summary at Observation Scale: 27
-    Total Foreground Area [pixels]: 428490
-    Average P2: 73.7660
-
-.. figure:: ../_images/cli/gwb/example_p2_27.png
-    :width: 50%
-
-Remarks
-"""""""
-
--   Density, Contagion or Adjacency are scale-dependent (specified by the size of the moving window).
--   This moving window approach (originally called Pf/Pff) forms the base for other derived analysis schemes, such as :code:`GWB_LM`/:code:`GWB_FAD`/:code:`GWB_FRAG`.
-
-Both, Density and Contagion add a first spatial information content on top of the primary information of forest, forest amount. Information on forest Density and Contagion is an integral part of many national forest inventories and forest resource assessments. However, the derived products Fragmentation and Landscape Mosaic may be easier to communicate.
-
 GWB_PARC
 ^^^^^^^^
 
@@ -1052,8 +940,8 @@ Processing parameter options are stored in the file :code:`input/parc-parameters
 .. code-block:: text
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_PARC parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
+    ;; GWB_PARC parameter file: 
+    ;; NOTE: do NOT delete or add any lines in this parameter file!
     ;;
     ;; PARC: Landscape Parcellation index
     ;; Input image requirements: [1b, 255b]-land cover classes, 
@@ -1080,8 +968,8 @@ The results are stored in the directory :code:`output`, one directory for each i
 .. code-block:: console 
 
     $ GWB_PARC -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_PARC using:
     dir_input= /home/prambaud/input
@@ -1130,9 +1018,9 @@ This module will conduct **recoding** of categorical land cover classes.
 
     Please ensure to strictly follow the instructions outlined in the file :code:`input/rec-parameters.txt`. In particular:
 
-    -   Do not delete or insert any new lines.
-    -   Modify the first column only in this file.
-    -   Insert the new recoded class value as an integer number for each of the 256 classes.
+    -   Insert two values per line separated by a space.
+    -   The first is the old class value and the second is the new recoded class value.
+    -   Old and new class values must be an integer number in [0, 255].
     -   Class values that are not encountered in the image will be skipped.
 
 Requirements
@@ -1145,280 +1033,29 @@ Processing parameter options are stored in the file :code:`input/rec-parameters.
 .. code-block:: text 
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_REC parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
+    ;; GWB_REC parameter file, also used for recoding by GWB_SPATCON:
+    ;; NOTE: change values only at the end of the file between the lines in *****
     ;;
     ;; REC: Recode image classes
-    ;; Input image requirements: [0b, 255b] - classes
+    ;; Input image requirements: classes within the range [0, 255] byte
     ;; Output: the same image coverage but with recoded class values
     ;;
-    ;; Please specify 256 lines (line 20 - 275) having two entries per line:
-    ;; new_recoded_value [0, 255]   old_original_value[0, 255]
-    ;;
-    ;; The first column: must have 256 entries showing the recoded values 
-    ;; The second column: MUST be in sequential order from 0 to 255, DO NOT EDIT
+    ;; Please specify recoding values with two entries per line.
+    ;; GWB_REC/GWB_SPATCON/spatcon.c or recode.c will error/exit if not in correct range.
     ;; Class values not found in the image will be skipped.
-    ;; i.e., to recode the class 55 to 3, line 75 would read: 3 55
-    ;; 
-    ;; Recode lookup table:
-    ;; new_recoded_value[0, 255]  old_original_value[0, 255]
+    ;; Class values not in the list will not be re-coded.
+    ;; If an old value appears on more than one line, the last one listed is used.
+    ;;
+    ;; Recoding rule:
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; The first value is the original value and the second the new recoded value:
+    ;; original value within [0, 255] byte      new recoded value within [0, 255] byte
+    ;; i.e., to recode class 1 to 12 and class 2 to 22 , enter one line each, like:
+    ;; 1 12
+    ;; 2 22
     ****************************************************************************
-    0    0
-    1    1
-    2    2
-    3    3
-    4    4
-    5    5
-    6    6
-    7    7
-    8    8
-    9    9
-    10   10
-    11   11
-    12   12
-    13   13
-    14   14
-    15   15
-    16   16
-    17   17
-    18   18
-    19   19
-    20   20
-    21   21
-    22   22
-    23   23
-    24   24
-    25   25
-    26   26
-    27   27
-    28   28
-    29   29
-    30   30
-    31   31
-    32   32
-    33   33
-    34   34
-    35   35
-    36   36
-    37   37
-    38   38
-    39   39
-    40   40
-    41   41
-    42   42
-    43   43
-    44   44
-    45   45
-    46   46
-    47   47
-    48   48
-    49   49
-    50   50
-    51   51
-    52   52
-    53   53
-    54   54
-    55   55
-    56   56
-    57   57
-    58   58
-    59   59
-    60   60
-    61   61
-    62   62
-    63   63
-    64   64
-    65   65
-    66   66
-    67   67
-    68   68
-    69   69
-    70   70
-    71   71
-    72   72
-    73   73
-    74   74
-    75   75
-    76   76
-    77   77
-    78   78
-    79   79
-    80   80
-    81   81
-    82   82
-    83   83
-    84   84
-    85   85
-    86   86
-    87   87
-    88   88
-    89   89
-    90   90
-    91   91
-    92   92
-    93   93
-    94   94
-    95   95
-    96   96
-    97   97
-    98   98
-    99   99
-    100  100
-    101  101
-    102  102
-    103  103
-    104  104
-    105  105
-    106  106
-    107  107
-    108  108
-    109  109
-    110  110
-    111  111
-    112  112
-    113  113
-    114  114
-    115  115
-    116  116
-    117  117
-    118  118
-    119  119
-    120  120
-    121  121
-    122  122
-    123  123
-    124  124
-    125  125
-    126  126
-    127  127
-    128  128
-    129  129
-    130  130
-    131  131
-    132  132
-    133  133
-    134  134
-    135  135
-    136  136
-    137  137
-    138  138
-    139  139
-    140  140
-    141  141
-    142  142
-    143  143
-    144  144
-    145  145
-    146  146
-    147  147
-    148  148
-    149  149
-    150  150
-    151  151
-    152  152
-    153  153
-    154  154
-    155  155
-    156  156
-    157  157
-    158  158
-    159  159
-    160  160
-    161  161
-    162  162
-    163  163
-    164  164
-    165  165
-    166  166
-    167  167
-    168  168
-    169  169
-    170  170
-    171  171
-    172  172
-    173  173
-    174  174
-    175  175
-    176  176
-    177  177
-    178  178
-    179  179
-    180  180
-    181  181
-    182  182
-    183  183
-    184  184
-    185  185
-    186  186
-    187  187
-    188  188
-    189  189
-    190  190
-    191  191
-    192  192
-    193  193
-    194  194
-    195  195
-    196  196
-    197  197
-    198  198
-    199  199
-    200  200
-    201  201
-    202  202
-    203  203
-    204  204
-    205  205
-    206  206
-    207  207
-    208  208
-    209  209
-    210  210
-    211  211
-    212  212
-    213  213
-    214  214
-    215  215
-    216  216
-    217  217
-    218  218
-    219  219
-    220  220
-    221  221
-    222  222
-    223  223
-    224  224
-    225  225
-    226  226
-    227  227
-    228  228
-    229  229
-    230  230
-    231  231
-    232  232
-    233  233
-    234  234
-    235  235
-    236  236
-    237  237
-    238  238
-    239  239
-    240  240
-    241  241
-    242  242
-    243  243
-    244  244
-    245  245
-    246  246
-    247  247
-    248  248
-    249  249
-    250  250
-    251  251
-    252  252
-    253  253
-    254  254
-    255  255
+    1    12
+    2    22
     ****************************************************************************
 
 Example
@@ -1431,8 +1068,8 @@ The results are stored in the directory :code:`output`, one directory for each i
 .. code-block:: console
 
     $ GWB_REC -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_REC using:
     dir_input= /home/prambaud/input
@@ -1491,8 +1128,8 @@ Processing parameter options are stored in the file :code:`input/rss-parameters.
 .. code-block:: text
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_RESTORATION-STATUS parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
+    ;; GWB_RESTORATION-STATUS parameter file: 
+    ;; NOTE: do NOT delete or add any lines in this parameter file!
     ;;
     ;; RSS: Restoration Status = network coherenceof image objetcs
     ;; Input image requirements: 1b-background, 2b-foreground, optional: 0b-missing
@@ -1516,8 +1153,8 @@ The result is stored in a single csv-file in the directory :code:`output`, listi
 .. code-block:: console
 
     $ GWB_RSS -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_RSS using:
     dir_input= /home/prambaud/input
@@ -1569,14 +1206,15 @@ Processing parameter options are stored in the file :code:`input/spa-parameters.
 .. code-block:: text 
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_SPA parameter file: 
-    ;;    ***  do NOT delete header lines starting with ";;" ***
+    ;; GWB_SPA parameter file: 
+    ;; NOTE: do NOT delete or add any lines in this parameter file!
     ;;
     ;; SPA: Spatial Pattern Analysis (2, 3, 5, or 6 classes)
+    ;; see https://ies-ows.jrc.ec.europa.eu/gtb/GTB/MSPA_Guide.pdf
     ;; Input image requirements: 1b-background, 2b-foreground, optional: 0b-missing
     ;;
     ;; SPAx will provide an image and summary statistics using 8-connectivity.
-    ;; Line 18: enter a single number, representing the number of pattern classes:
+    ;; Line 19: enter a single number, representing the number of pattern classes:
     ;; 2: SLF, Contiguous
     ;; 3: Core, Core-Openings, Margin  
     ;; 5: Core, Core-Openings, Edge, Perforation, Margin
@@ -1598,8 +1236,8 @@ The results are stored in the directory :code:`output`, one directory for each i
 .. code-block:: console
 
     $ GWB_SPA -i=/home/prambaud/input -o=/home/prambaud/output
-    IDL 8.8.0 (linux x86_64 m64).
-    (c) 2020, Harris Geospatial Solutions, Inc.
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
 
     GWB_SPA using:
     dir_input= /home/prambaud/input
@@ -1676,6 +1314,128 @@ Remarks
 -   Please use :code:`GWB_MSPA` if you need an edge width > 1 pixel and/or to detect connecting pathways. 
 
 :code:`GWB_SPA` is a purely geometric analysis scheme, which can be applied to any type of raster image. It is ideal to describe the morphology of foreground (forest) patches for basic mapping and statistics, which may be sufficient in many application fields. Advanced analysis, including the detection of connecting pathways require using the full version :code:`GWB_MSPA`.
+
+GWB_SPATCON
+^^^^^^^^
+
+This module provides full access to the spatial convolution program **spatcon**. Back in 1992, Kurt Riitters started coding a suite of landscape pattern metrics from a categorical raster map (`Riitters et al. (1995) <https://link.springer.com/content/pdf/10.1007/BF00158551.pdf>`_), (`Riitters et al. (2000) <https://www.srs.fs.usda.gov/pubs/ja/ja_riitters006.pdf>`_). Over time, **spatcon** grew to now offer 21 spatial convolution metrics, which are summarised in a dedicated `Technical Note <https://github.com/ec-jrc/GWB/blob/main/tools/external_sources/GWB_SPATCON-TechnicalNote.pdf>`_.
+Spatcon conducts a moving window, or focal analysis and results in a spatially explicit map for the selected metric.
+
+Requirement
+"""""""""""
+
+Single band geotiff in data format byte. Metric-specific requirements and processing options are stored in the file :code:`input/p223-parameters.txt`. 
+
+.. code-block:: text
+
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; GWB_SPATCON parameter file: 
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; For all output types, missing indicates the input window contained only
+    ;; missing pixels or missing pixel adjacencies.
+    ;; Missing values are coded as 0 (rounded byte), or -0.01 (float precision).
+    ;;
+    ;; Rule options at the end of this file and between the lines in *****
+    ;; 1 = Majority (most frequent) pixel value
+    ;; 6 = Landscape mosaic (19-class version)
+    ;; 7 = Landscape mosaic (103-class version)
+    ;; 10 = Number of unique pixel values
+    ;; 20 = Median pixel value
+    ;; 21 = Mean pixel value
+    ;; 5x = Pixel diversity:
+    ;;    51 = Gini-Simpson pixel diversity
+    ;;    52 = Gini-Simpson pixel evenness
+    ;;    53 = Shannon pixel evenness
+    ;;    54 = Pmax
+    ;; 7x = Pixel adjacency (with regard to order of pixels in pairs):
+    ;;    71 = Angular second moment
+    ;;    72 = Gini-Simpson adjacency evenness
+    ;;    73 = Shannon adjacency evenness
+    ;;    74 = Sum of diagonals
+    ;;    75 = Proportion of total adjacencies involving a specific pixel value
+    ;;    76 = Proportion of total adjacencies which are between two specific pixel values
+    ;;    77 = Proportion of adjacencies involving a specific pixel value which are adjacencies with that same pixel value
+    ;;    78 = Proportion of adjacencies involving a specific pixel value which are adjacencies
+    ;;             between that pixel value and another specific pixel value
+    ;; 8x = Pixel value density and ratios
+    ;;    81 = Area density
+    ;;    82 = Ratio of the frequencies of two specified pixel values
+    ;;    83 = Combined ratio of two specific pixel values
+    ;;
+    ;; for more details on SPATCON, see the Technical Note and/or source code at:
+    ;; https://github.com/ec-jrc/GWB/tree/main/tools/external_sources/
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    ;; spatcon parameters for all rules (some rules use only a subset of all parameters)
+    ;; R (mapping rule in {1,6,7,10,20,21,51,52,53,54,71,72,73,74,75,76,77,78,81,82,83})
+    ;; W (window size - minimum 3, maximum < x or y dimension of input map)
+    ;; A (first target code - required for mapping rules 75, 76, 77, 78, 81, 82, 83. Default = 0)
+    ;; B (second target code - required for mapping rules 76, 78, 82, 83. Default = 0)
+    ;; H (handling of missing values or adjacencies: 1-ignore. 2-include;  -no effect for mapping rules 21, 82, 83. Default = 1)
+    ;; F (output precision: 0 = 8-bit byte. 1 = 32-bit float. Float is not available for mapping rules 1, 6, 7, 10. Default = 0)
+    ;; Z (Request re-code of input pixels. 0 = No. 1 = Yes. Default = 0)
+    ;; M (AFTER optional re-coding (z = 1), the pixel value that is missing. Default = 0)
+    ;;
+    ;; NOTE: parameters R and W are mandatory. Parameters that are not specified will use their default value.
+    ;; Example parameter file for running spatcon rule Majority and using a 27x27 window:
+    ;; R 1
+    ;; W 27
+    ****************************************************************************
+    R 1
+    W 27
+    A 2
+    B 3
+    H 1
+    F 0
+    Z 0
+    M 0
+    ****************************************************************************
+
+Example
+"""""""
+
+The results are stored in the directory :code:`output`, one directory for each input image accompanied by a log-file providing details on computation time and processing success of each input image.
+
+:code:`GWB_SPATCON` command and listing of results in the directory output:
+
+.. code-block:: console
+
+    $ GWB_SPATCON -i=/home/prambaud/input -o=/home/prambaud/output
+    IDL 8.8.3 (linux x86_64 m64).
+    (c) 2022, Harris Geospatial Solutions, Inc.
+
+    GWB_SPATCON using:
+    dir_input= /home/prambaud/input
+    dir_output= /home/prambaud/output
+    % Loaded DLM: TIFF.
+    Done with: clc3class.tif
+    Done with: example.tif
+    RULE 1 finished sucessfully
+    
+    $ ls -R output/
+    output/:
+    clc3class_rule1_27 example_rule1_27  rule1_27.log
+
+    output/clc3class_rule1_27:
+    clc3class_rule1_27.tif
+    
+    output/example_rule1_27:
+    example_rule1_27.tif
+
+Example spatial result of the input image :code:`example.tif` for Rule 1, showing the majority pixel value in a 27x27 moving window:
+
+
+.. figure:: ../_images/cli/gwb/example_rule1_27.png
+    :width: 50%
+
+Remarks
+"""""""
+
+-   All density or adjacency metrics are scale-dependent (specified by the size of the moving window).
+-   Some **spatcon** moving window metrics form the base for other derived analysis schemes, such as :code:`GWB_LM` (Rule 6,7), :code:`GWB_FAD` (Rule 81), :code:`GWB_FRAG` (Rule 76, 81).
+
+Both, Density (Rule 81) and Contagion (Rule 77) add a first spatial information content on top of the primary information of forest, forest amount. Information on forest Density and Contagion is an integral part of many national forest inventories and forest resource assessments. However, the derived products Fragmentation (:code:`GWB_FRAG`) and Landscape Mosaic (:code:`GWB_LM`) may be easier to communicate.
+
+
 
 .. spelling:word-list::
 
