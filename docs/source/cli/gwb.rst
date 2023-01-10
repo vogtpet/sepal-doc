@@ -42,11 +42,11 @@ Example of the **GWB** setup in the user account :code:`/home/prambaud`.
 
     $ ls output/
     $ ls input/
-    acc-parameters.txt   clc3class.tif        example.tif         
-    frag-parameters.txt  mspa-parameters.txt  parc-parameters.txt  
-    rec-parameters.txt   spa-parameters.txt   backup              
-    dist-parameters.txt  fad-parameters.txt   lm-parameters.txt    
-    p223-parameters.txt  readme.txt           rss-parameters.txt
+    acc-parameters.txt      clc3class.tif        example.tif         
+    frag-parameters.txt     mspa-parameters.txt  parc-parameters.txt  
+    rec-parameters.txt      spa-parameters.txt   backup              
+    dist-parameters.txt     fad-parameters.txt   lm-parameters.txt    
+    spatcon-parameters.txt  readme.txt           rss-parameters.txt
 
     $ less input/readme.txt
     Images:
@@ -111,11 +111,6 @@ To get an overview of all **GWB** modules enter the command: :code:`GWB`
         Requirements: 1b-BG, 2b-FG, optional: 0b-missing
         Parameter file: input/mspa-parameters.txt
     
-    GWB_P223: Foreground Density [%], Contagion [%], or Adjacency [%]
-        Spatcon: P2, P22, P23, Shannon, Sumd
-        Requirements: 1b-BG, 2b-FG, 3b-specific BG (for Adjacency), optional: 0b-missing
-        Parameter file: input/p223-parameters.txt
-    
     GWB_PARC: Landscape Parcellation index
         Requirements: [1b, 255b]-land cover classes, optional: 0b-missing
         Parameter file: input/parc-parameters.txt
@@ -131,7 +126,11 @@ To get an overview of all **GWB** modules enter the command: :code:`GWB`
     GWB_SPA: Spatial Pattern Analysis (2, 3, 5, or 6 classes)
         Requirements: 1b-BG, 2b-FG, optional: 0b-missing
         Parameter file: input/spa-parameters.txt
-    
+        
+    GWB_SPATCON: moving window analysis of proportion and attribute adjacency table
+        Requirements: categorical map within [0b, 255b]
+        Parameter file: input/spatcon-parameters.txt
+        
     More details in the module-specific parameter files, or run: GWB_XXX --help
     
     ===============================================================================
@@ -160,24 +159,25 @@ To get an overview of all **GWB** modules enter the command: :code:`GWB`
      c) processing RAM requirement by module: RAMpeak/imsizeGB
     
     Approximate peak RAM usage factors for an image of size imsizeGB: 
-    GWB_ACC  : 30 * imsizeGB
-    GWB_DIST : 18 * imsizeGB
-    GWB_FAD  : 30 * imsizeGB
-    GWB_FRAG : 13 * imsizeGB
-    GWB_LM   :  9 * imsizeGB
-    GWB_MSPA : 20 * imsizeGB
-    GWB_P223 : 15 * imsizeGB
-    GWB_PARC : 22 * imsizeGB
-    GWB_REC  :  2 * imsizeGB
-    GWB_RSS  : 20 * imsizeGB
-    GWB_SPA  : 20 * imsizeGB
+    GWB_ACC    : 30 * imsizeGB
+    GWB_DIST   : 18 * imsizeGB
+    GWB_FAD    : 30 * imsizeGB
+    GWB_FRAG   : 13 * imsizeGB
+    GWB_LM     :  9 * imsizeGB
+    GWB_MSPA   : 20 * imsizeGB
+    GWB_PARC   : 22 * imsizeGB
+    GWB_REC    :  2 * imsizeGB
+    GWB_RSS    : 20 * imsizeGB
+    GWB_SPA    : 20 * imsizeGB
+    GWB_SPATCON: metric-dependent
     Example: input image 50,000 x 50,000 pixels -> imsizeGB = 2.33 GB. 
     Processing this image for GWB_ACC will require 30 * 2.33 ~ 70 GB RAM
     
     The RAM usage factors above are indicative only. They depend on module 
     settings and the amount/configuration of objects in the input image.
     ===============================================================================
-     ***  Please scroll up to read GWB information in Part A, B, C above  ***
+     ***  To read all GWB information in Part A, B, C above,   ***
+     ***  either scroll up or run the command:   less /usr/bin/GWB  ***
     ===============================================================================
 
 
@@ -222,7 +222,7 @@ Available Commands
 
 .. danger:: 
 
-    Please enter your own settings by amending the module-specific parameters within the section marked with :code:`*******` in the respective input/<module>-parameters.txt file. Don't change anything else in the parameter file, don't delete or add lines or the module execution will crash. If in doubt, consult the respective input/backup/<module>-parameters.txt file.
+    Please enter your own settings by amending the module-specific parameters within the section marked with :code:`*******` at the end of the respective input/<module>-parameters.txt file. If the parameter file is incorrect, consult the respective input/backup/<module>-parameters.txt file.
 
 GWB_ACC
 ^^^^^^^
@@ -245,7 +245,7 @@ Processing parameter options are stored in the file :code:`input/acc-parameters.
 .. code-block:: text
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_ACCOUNTING parameter file: 
+    ;; GWB_ACCOUNTING parameter file: 
     ;;    ***  do NOT delete header lines starting with ";;" ***
     ;;
     ;; ACC: Accounting of image objects and patch area size classes
@@ -381,7 +381,7 @@ Processing parameter options are stored in the file :code:`input/dist-parameters
 .. code-block:: text
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_DIST parameter file: 
+    ;; GWB_DIST parameter file: 
     ;;    ***  do NOT delete header lines starting with ";;" ***
     ;;
     ;; DIST: Euclidean Distance + Hypsometric Curve
@@ -473,7 +473,7 @@ Processing parameter options are stored in the file :code:`input/fad-parameters.
 .. code-block:: text
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_FAD parameter file: 
+    ;; GWB_FAD parameter file: 
     ;;    ***  do NOT delete header lines starting with ";;" ***
     ;;
     ;; FAD = multi-scale fragmentation analysis at fixed observation scales of
@@ -581,37 +581,38 @@ Processing parameter options are stored in the file :code:`input/frag-parameters
 .. code-block:: text
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    ;; GTB_FRAG parameter file: 
+    ;; GWB_FRAG parameter file: 
     ;;    ***  do NOT delete header lines starting with ";;" ***
     ;;
-    ;; FOS = fragmentation analysis at up to 10 user-selected observation scales
+    ;; Fragmentation analysis at up to 10 user-selected Fixed Observation Scales (FOS):
+    ;; FAC (Foreground Area Clustering); FAD (Foreground Area Density)
     ;; 
-    ;; FOS5/6: per-pixel density, color-coded into 5/6 fragmentation classes
-    ;; FOS-APP2: average per-patch density, color-coded into 2 classes
-    ;; FOS-APP5: average per-patch density, color-coded into 5 classes
+    ;; Options:
+    ;; FAC(FAD)5/6: per-pixel clustering (density), color-coded into 5/6 fragmentation classes
+    ;; FAC(FAD)-APP2/5: average per-patch clustering (density), color-coded into 2/5 classes
     ;; 
     ;; Input image requirements: 1b-background, 2b-foreground, optional: 
     ;;    0b-missing, 3b-special background, 4b-non-fragmenting background
     ;;
-    ;; FOS will provide an image per observation scale and summary statistics.
-    ;;
+    ;; FRAG will provide one (1) image per observation scale and summary statistics.
+    ;; (method: FAC or FAD; reporting at pixel or patch (APP) level; # of reporting classes: 2, 5, 6)
     ;; Please specify entries at lines 32-36 ONLY using the following options:
-    ;; line 32: FOS5 (default)  or  FOS6  or  FOS-APP2  or  FOS-APP5
+    ;; line 32: FAC_5 (default)  or  FAC_6, FAC-APP_2, FAC_APP_5, FAD_5, FAD_6, FAD-APP_2  or  FAD-APP_5
     ;; line 33: Foreground connectivity: 8 (default) or 4 
     ;; line 34: pixel resolution [meters]
-    ;; line 35: up to 10 window sizes [unit: pixels] in increasing order
-    ;;          and separated by a single space.
+    ;; line 35: up to 10 window sizes (unit: pixels, uneven within [3, 501] )
+    ;;          n increasing order and separated by a single space.
     ;; line 36: high-precision: 1 (default) or 0
     ;;          (1-float precision, 0-rounded byte)
     ;;
-    ;; an example parameter file doing FOS5 and using 8-connected foreground:
-    ;; FOS5
+    ;; an example parameter file using the default FAC5 and 8-connected foreground:
+    ;; FAC_5
     ;; 8
     ;; 100
     ;; 27
     ;; 1
     ****************************************************************************
-    FOS-APP2
+    FAD-APP_2
     8
     100
     23
@@ -644,38 +645,56 @@ The results are stored in the directory :code:`output`, one directory for each i
     clc3class_frag  example_frag  frag.log
 
     output/clc3class_frag:
-    clc3class_FOS-APP2_23.tif  clc3class_FOS-APP2.csv  clc3class_FOS-APP2.sav  
-    clc3class_FOS-APP2.txt
+    clc3class_fos-fad-app_2class_23.tif  clc3class_fos-fad-app_2class.csv  clc3class_fos-fad-app_2class.sav  
+    clc3class_fos-fad-app_2class.txt
 
     output/example_frag:
-    example_FOS-APP2_23.tif  example_FOS-APP2.csv  example_FOS-APP2.sav  
-    example_FOS-APP2.txt
+    example_fos-fad-app_2class_23.tif  example_fos-fad-app_2class_23.csv  example_fos-fad-app_2class_23.sav  
+    example_fos-fad-app_2class_23.txt
 
-Example statistics and spatial result of custom-scale per patch analysis of the input image :code:`example.tif`, here FOS-APP2 showing Continuous forest patches in light green and Separated forest patches in dark green.
+Example statistics and spatial result of custom-scale per patch analysis of the input image :code:`example.tif`, here FAD-APP_2 showing Continuous forest patches in light green and Separated forest patches in dark green.
 
 .. code-block:: text
 
-    FOS-APP2: Foreground Area Density summary analysis for image: 
+    Fragmentation analysis using Fixed Observation Scale (FOS)
+    Method options: FAC (Foreground Area Clustering); FAD (Foreground Area Density)
+    Summary analysis for image:
     example.tif
     ================================================================================
-    8-conn FG: area, # patches, aps [pixels]: 428490, 2850, 150.34737
-    Pixel resolution: 100[m], pix2ha: 1.00000, pix2acr: 2.47105
-    Observation scale:   1
+    FOS parameter settings:
+    Foreground connectivity: 8-conn FG
+    FOS-type selected: FAD-APP_2
+    Method: FAD
+    Reporting style: FAD at patch level (APP: average per patch)
+    Number of reporting classes: 2
+    Pixel resolution [m]: 100.000
+    Window size [pixels]: 23
+    Observation scale [(window size * pixel resolution)^2]: 
+      Observation scale:   1
     Neighborhood area:   23x23     
-        [hectare]:     529.00
-        [acres]:    1307.19
+     [hectare]:     529.00
+       [acres]:    1307.19
     ================================================================================
-    FOS-APP 5-class:
-            Rare:      1.2089
-        Patchy:      7.1572
-    Transitional:      4.2668
-        Dominant:     87.3670
-        Interior:      0.0000
-    FOS-APP 2-class:
-    Separated:      8.3661
-    Continuous:     91.6339
+    Image foreground statistics:
+    Foreground area [pixels]: 428490
+    Number of foreground patches: 2850
+    Average foreground patch size: 150.34737
     ================================================================================
-        FOS_av:     75.2900
+    Proportion [%] of foreground area in foreground cover class:
+    FOS-FAD-APP: 5-classes:
+               Rare (FAD-pixel value within: [0 - 9]):      1.2089
+           Patchy (FAD-pixel value within: [10 - 39]):      7.1572
+     Transitional (FAD-pixel value within: [40 - 59]):      4.2668
+         Dominant (FAD-pixel value within: [60 - 89]):     87.3670
+        Interior (FAD-pixel value within: [90 - 100]):      0.0000
+    FOS-FAD-APP: 2 classes:
+        Separated  (FAD-pixel value within: [0 - 39]):      8.3661
+      Continuous (FAD-pixel value within: [40 - 100]):     91.6339
+    ================================================================================
+    Precision: floating point
+    Average pixel value across all foreground pixels using FAD-method:     75.2900
+                    Equivalent to average foreground connectivity:     75.2900
+                   Equivalent to average foreground fragmentation:     24.7100
 
 .. figure:: ../_images/cli/gwb/example_fad-app2_23.png
     :width: 50%
